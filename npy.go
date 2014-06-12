@@ -1,3 +1,4 @@
+// Package npy provides functions to read in Python numpy data files into Go
 package npy
 
 import (
