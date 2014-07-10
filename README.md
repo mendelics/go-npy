@@ -1,4 +1,4 @@
-# npy
+# go-npy
 Read in .npy files produced by numpy into Go
 
 ###Usage
