@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>npy by cquotient</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>npy</h1>
+        <p>Read matrices in numpy&#39;s npy format into Go</p>
+
+        <p class="view"><a href="https://github.com/cquotient/npy">View the Project on GitHub <small>cquotient/npy</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/cquotient/npy/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cquotient/npy/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cquotient/npy">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="npy" class="anchor" href="#npy"><span class="octicon octicon-link"></span></a>npy</h1>
+
+<p>Read in .npy files produced by numpy into Go</p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<pre><code>import (
+  "github.com/cquotient/npy"
+  "github.com/gonum/matrix/mat64"
+)
+...
+
+rows, cols, data, err := npy.NpyRead("data/dense.py")
+x := mat64.NewDense(int(rows), int(cols), data)
+</code></pre>
+
+<h3>
+<a name="caveats" class="anchor" href="#caveats"><span class="octicon octicon-link"></span></a>Caveats</h3>
+
+<ul>
+<li>This is a hack, but it does work for us</li>
+<li>Only supports dense float64 matrices</li>
+<li>.npz files are not currently supported</li>
+<li>Assumes a single matrix in the file</li>
+</ul><h3>
+<a name="npy-format-documentation" class="anchor" href="#npy-format-documentation"><span class="octicon octicon-link"></span></a>npy format documentation</h3>
+
+<p><a href="https://github.com/numpy/numpy/blob/master/doc/neps/npy-format.rst">https://github.com/numpy/numpy/blob/master/doc/neps/npy-format.rst</a></p>
+
+<h3>
+<a name="build-status" class="anchor" href="#build-status"><span class="octicon octicon-link"></span></a>Build Status</h3>
+
+<p><a href="https://travis-ci.org/cquotient/npy"><img src="https://travis-ci.org/cquotient/npy.svg?branch=master" alt="Build Status"></a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/cquotient">cquotient</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
