@@ -23,4 +23,4 @@ x := mat64.NewDense(int(rows), int(cols), data)
 https://github.com/numpy/numpy/blob/master/doc/neps/npy-format.rst
 
 ### Build Status
-[![Build Status](https://travis-ci.org/cquotient/npy.svg?branch=master)](https://travis-ci.org/cquotient/npy)
+[![Build Status](https://travis-ci.org/cquotient/go-npy.svg?branch=master)](https://travis-ci.org/cquotient/go-npy)
