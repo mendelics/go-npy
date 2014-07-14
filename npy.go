@@ -52,7 +52,7 @@ func NpyRead(fname string) (rows int64, cols int64, data []float64, err error) {
 		return 0, 0, nil, err
 	}
 	if !checkFormat(magicbuf) {
-		log.Panic("File is not an npy file %v", magicbuf)
+		log.Panicf("File is not an npy file %v", magicbuf)
 		return 0, 0, nil, err
 	}
 	HEADER_LEN, _ := binary.Uvarint(magicbuf[8:9])
