@@ -4,7 +4,7 @@ Read in .npy files produced by numpy into Go
 ###Usage
 ```
 import (
-  "github.com/cquotient/npy"
+  npy "github.com/cquotient/go-npy"
   "github.com/gonum/matrix/mat64"
 )
 ...
