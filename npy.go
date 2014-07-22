@@ -30,10 +30,10 @@ func checkFormat(buf []byte) bool {
 }
 
 /*
-NpyRead returns the number of rows, columns and the data array corresponding to a dense float64 numpy
+Read returns the number of rows, columns and the data array corresponding to a dense float64 numpy
 matrix stored in the input file
 */
-func NpyRead(fname string) (rows int64, cols int64, data []float64, err error) {
+func Read(fname string) (rows int64, cols int64, data []float64, err error) {
 	fi, err := os.Open(fname)
 	if err != nil {
 		log.Panic(err)
@@ -55,17 +55,17 @@ func NpyRead(fname string) (rows int64, cols int64, data []float64, err error) {
 		log.Panicf("File is not an npy file %v", magicbuf)
 		return 0, 0, nil, err
 	}
-	HEADER_LEN, _ := binary.Uvarint(magicbuf[8:9])
-	log.Printf("File %s is an npy file of version %x.%x with HEADER_LEN %v\n", fname, magicbuf[6], magicbuf[7], HEADER_LEN)
+	hdrLen, _ := binary.Uvarint(magicbuf[8:9])
+	log.Printf("File %s is an npy file of version %x.%x with hdrLen %v\n", fname, magicbuf[6], magicbuf[7], hdrLen)
 
-	extraBytes := (npyHdrLen + 4 + HEADER_LEN) % 16
+	extraBytes := (npyHdrLen + 4 + hdrLen) % 16
 	if extraBytes > 0 {
 		extraBytes = 16 - extraBytes
 	} else {
 		extraBytes = 0
 	}
 
-	hdrBuf := make([]byte, HEADER_LEN+extraBytes)
+	hdrBuf := make([]byte, hdrLen+extraBytes)
 	n, err := r.Read(hdrBuf)
 	log.Printf("Read %d bytes\n", n)
 	if err != nil {
