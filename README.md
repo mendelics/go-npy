@@ -1,6 +1,9 @@
 # go-npy
 Read in .npy files produced by numpy into Go
 
+[![Build Status](https://travis-ci.org/cquotient/go-npy.svg?branch=master)](https://travis-ci.org/cquotient/go-npy)
+[![GoDoc](https://godoc.org/github.com/cquotient/go-npy?status.png)](https://godoc.org/github.com/cquotient/go-npy)
+
 ###Usage
 ```
 import (
@@ -21,6 +24,3 @@ x := mat64.NewDense(int(rows), int(cols), data)
 
 ###npy format documentation
 https://github.com/numpy/numpy/blob/master/doc/neps/npy-format.rst
-
-### Build Status
-[![Build Status](https://travis-ci.org/cquotient/go-npy.svg?branch=master)](https://travis-ci.org/cquotient/go-npy)
