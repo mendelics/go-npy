@@ -12,7 +12,7 @@ import (
 )
 ...
 
-rows, cols, data, err := npy.NpyRead("data/dense.py")
+rows, cols, data, err := npy.Read("data/dense.py")
 x := mat64.NewDense(int(rows), int(cols), data)
 ```
 
