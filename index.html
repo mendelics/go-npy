@@ -33,6 +33,9 @@
 
 <p>Read in .npy files produced by numpy into Go</p>
 
+<p><a href="https://travis-ci.org/cquotient/go-npy"><img src="https://travis-ci.org/cquotient/go-npy.svg?branch=master" alt="Build Status"></a>
+<a href="https://godoc.org/github.com/cquotient/go-npy"><img src="https://godoc.org/github.com/cquotient/go-npy?status.png" alt="GoDoc"></a></p>
+
 <h3>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
 
@@ -42,7 +45,7 @@
 )
 ...
 
-rows, cols, data, err := npy.NpyRead("data/dense.py")
+rows, cols, data, err := npy.Read("data/dense.py")
 x := mat64.NewDense(int(rows), int(cols), data)
 </code></pre>
 
@@ -58,11 +61,6 @@ x := mat64.NewDense(int(rows), int(cols), data)
 <a name="npy-format-documentation" class="anchor" href="#npy-format-documentation"><span class="octicon octicon-link"></span></a>npy format documentation</h3>
 
 <p><a href="https://github.com/numpy/numpy/blob/master/doc/neps/npy-format.rst">https://github.com/numpy/numpy/blob/master/doc/neps/npy-format.rst</a></p>
-
-<h3>
-<a name="build-status" class="anchor" href="#build-status"><span class="octicon octicon-link"></span></a>Build Status</h3>
-
-<p><a href="https://travis-ci.org/cquotient/go-npy"><img src="https://travis-ci.org/cquotient/go-npy.svg?branch=master" alt="Build Status"></a></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/cquotient">cquotient</a></p>
