@@ -76,7 +76,7 @@ func Read(fname string) (rows int64, cols int64, data []float64, err error) {
 	shape := strings.Split(hdrStr[strings.Index(hdrStr, "(")+1:+strings.Index(hdrStr, ")")], ",")
 	rows, err = strconv.ParseInt(strings.TrimSpace(shape[0]), 0, 0)
 	cols, err = strconv.ParseInt(strings.TrimSpace(shape[1]), 0, 0)
-	log.Printf("Matrix shape: %d X %d, Data size:\n%v bytes\n", rows, cols, rows*cols*8)
+	log.Printf("Matrix shape: %d X %d, Data size:%v bytes\n", rows, cols, rows*cols*8)
 	qdata := make([]byte, 8)
 	data = make([]float64, rows*cols)
 	for i := int64(0); i < (rows * cols); i++ {
