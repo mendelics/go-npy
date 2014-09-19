@@ -33,7 +33,7 @@ func checkFormat(buf []byte) bool {
 Read returns the number of rows, columns and the data array corresponding to a dense float64 numpy
 matrix stored in the input file
 */
-func Read(fname string) (rows uint32, cols uint32, data []float64, err error) {
+func Read(fname string) (rows int64, cols int64, data []float64, err error) {
 	fi, err := os.Open(fname)
 	if err != nil {
 		log.Panic(err)
@@ -76,13 +76,13 @@ func Read(fname string) (rows uint32, cols uint32, data []float64, err error) {
 	shape := strings.Split(hdrStr[strings.Index(hdrStr, "(")+1:+strings.Index(hdrStr, ")")], ",")
 	var itmp int
 	itmp, _ = strconv.Atoi(strings.TrimSpace(shape[0]))
-	rows = uint32(itmp)
+	rows = int64(itmp)
 	itmp, _ = strconv.Atoi(strings.TrimSpace(shape[1]))
-	cols = uint32(itmp)
+	cols = int64(itmp)
 	log.Printf("Matrix shape: %d X %d, Data size:%v bytes\n", rows, cols, rows*cols*8)
 	qdata := make([]byte, 8)
 	data = make([]float64, rows*cols)
-	for i := uint32(0); i < (rows * cols); i++ {
+	for i := int64(0); i < (rows * cols); i++ {
 		_, err = r.Read(qdata)
 		if err != nil {
 			log.Panic(err)
