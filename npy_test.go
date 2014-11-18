@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func testNpyDense(t *testing.T) {
-	r, c, data, err := NpyRead("data/dense.npy")
+func TestNpyDense(t *testing.T) {
+	r, c, data, err := Read("data/dense.npy")
 	if err != nil {
 		t.Errorf("Error %v reading dense.py", err)
 	}
