@@ -36,23 +36,23 @@ matrix stored in the input file
 func Read(fname string) (rows int, cols int, data []float64, err error) {
 	fi, err := os.Open(fname)
 	if err != nil {
-		log.Panic(err)
+		log.Print(err)
 		return 0, 0, nil, err
 	}
 	defer func() {
 		if err := fi.Close(); err != nil {
-			log.Panic(err)
+			log.Print(err)
 		}
 	}()
 	r := bufio.NewReader(fi)
 	magicbuf := make([]byte, npyHdrLen+4)
 	_, err = r.Read(magicbuf)
 	if err != nil {
-		log.Panic(err)
+		log.Print(err)
 		return 0, 0, nil, err
 	}
 	if !checkFormat(magicbuf) {
-		log.Panicf("File is not an npy file %v", magicbuf)
+		log.Printf("File is not an npy file %v", magicbuf)
 		return 0, 0, nil, err
 	}
 	hdrLen, _ := binary.Uvarint(magicbuf[8:9])
@@ -69,7 +69,7 @@ func Read(fname string) (rows int, cols int, data []float64, err error) {
 	n, err := r.Read(hdrBuf)
 	log.Printf("Read %d bytes\n", n)
 	if err != nil {
-		log.Panic(err)
+		log.Print(err)
 		return 0, 0, nil, err
 	}
 	hdrStr := strings.TrimSpace(string(hdrBuf))
@@ -82,7 +82,7 @@ func Read(fname string) (rows int, cols int, data []float64, err error) {
 	for i := int(0); i < (rows * cols); i++ {
 		_, err = r.Read(qdata)
 		if err != nil {
-			log.Panic(err)
+			log.Print(err)
 			return 0, 0, nil, err
 		}
 		data[i] = math.Float64frombits(binary.LittleEndian.Uint64(qdata))
