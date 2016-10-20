@@ -42,7 +42,6 @@ func Read(fname string) (rows int, cols int, data []float64, err error) {
 	defer func() {
 		if err := fi.Close(); err != nil {
 			log.Print(err)
-			return rows, columns, data, err
 		}
 	}()
 	r := bufio.NewReader(fi)
