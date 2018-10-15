@@ -56,7 +56,7 @@ func Read(fname string) (rows int, cols int, data []float64, err error) {
 		return 0, 0, nil, err
 	}
 	hdrLen, _ := binary.Uvarint(magicbuf[8:9])
-	log.Printf("File %s is an npy file of version %x.%x with hdrLen %v\n", fname, magicbuf[6], magicbuf[7], hdrLen)
+	// log.Printf("File %s is an npy file of version %x.%x with hdrLen %v\n", fname, magicbuf[6], magicbuf[7], hdrLen)
 
 	extraBytes := (npyHdrLen + 4 + hdrLen) % 16
 	if extraBytes > 0 {
@@ -66,8 +66,8 @@ func Read(fname string) (rows int, cols int, data []float64, err error) {
 	}
 
 	hdrBuf := make([]byte, hdrLen+extraBytes)
-	n, err := r.Read(hdrBuf)
-	log.Printf("Read %d bytes\n", n)
+	_, err = r.Read(hdrBuf)
+	// log.Printf("Read %d bytes\n", n)
 	if err != nil {
 		log.Print(err)
 		return 0, 0, nil, err
@@ -76,7 +76,9 @@ func Read(fname string) (rows int, cols int, data []float64, err error) {
 	shape := strings.Split(hdrStr[strings.Index(hdrStr, "(")+1:+strings.Index(hdrStr, ")")], ",")
 	rows, _ = strconv.Atoi(strings.TrimSpace(shape[0]))
 	cols, _ = strconv.Atoi(strings.TrimSpace(shape[1]))
-	log.Printf("Matrix shape: %d X %d, Data size:%v bytes\n", rows, cols, rows*cols*8)
+
+	// log.Printf("Matrix shape: %d X %d, Data size:%v bytes\n", rows, cols, rows*cols*8)
+
 	qdata := make([]byte, 8)
 	data = make([]float64, rows*cols)
 	for i := int(0); i < (rows * cols); i++ {
